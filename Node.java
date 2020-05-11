@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class Node {
-    //next & previous pointers of data type polygon and pointer
-    private Polygon data;
+    //next & previous pointers of data type PlanarShape and pointer
+    private PlanarShape data;
     private Node next;
     private Node previous;
 
-    public Node(Polygon p){//Creates a node with data polygon
+    public Node(PlanarShape p){//Creates a node with data PlanarShape
         next = this;
         previous = this;
         data = p;
@@ -24,7 +24,7 @@ public class Node {
         previous = this;
     }
 
-    public Node(Polygon p, Node nxt, Node prev){//creates a node and places it in a manual position
+    public Node(PlanarShape p, Node nxt, Node prev){//creates a node and places it in a manual position
         next = nxt;
         previous = prev;
         data = p;
@@ -52,7 +52,7 @@ public class Node {
         previous = null;
     }
 
-    public String getArea(){//calls polygon area function and checks to see if the output is to 2 decimal places and if not then a 0 is added
+    public String getArea(){//calls PlanarShape area function and checks to see if the output is to 2 decimal places and if not then a 0 is added
         String out = "" + data.area();
         double d= data.area();
         String text = Double.toString(Math.abs(d));
@@ -65,9 +65,9 @@ public class Node {
         return out;
     }
 
-    public boolean comesBefore(Node n){//returns true if this.area() < p.area()
+    /*public boolean comesBefore(Node n){//returns true if this.area() < p.area()
         return data.comesBefore(n.data);
-    }
+    }*/
 
     @Override
     public String toString() {//how to convert the object to a string
