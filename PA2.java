@@ -1,6 +1,6 @@
 import java.lang.*;
 
-public class PA1 {
+public class PA2 {
     public static void insertionSort() {
         //insertionSort all of the items of the linkedlist into a new LinkedList
     }
