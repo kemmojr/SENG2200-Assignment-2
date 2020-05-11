@@ -19,7 +19,7 @@ public class LinkedList {
         sentinel = new Node();
     }
 
-    public void insert(Polygon p) {//Insert a polygon in a node before current
+    public void insert(PlanarShape p) {//Insert a PlanarShape in a node before current
         Node n = new Node(p);
         current.getNext().setPrevious(n);
         n.setNext(current.getNext());
@@ -28,7 +28,7 @@ public class LinkedList {
         size++;
     }
 
-    public void prepend(Polygon p) {//Add a new node at the start of the LL
+    public void prepend(PlanarShape p) {//Add a new node at the start of the LL
         Node n = new Node(p);
         n.setPrevious(sentinel);
         n.setNext(sentinel.getNext());
@@ -37,7 +37,7 @@ public class LinkedList {
         size++;
     }
 
-    public void append(Polygon p) {//Add a new node at the end of the LL
+    public void append(PlanarShape p) {//Add a new node at the end of the LL
         Node n = new Node(p);
         n.setNext(sentinel);
         n.setPrevious(sentinel.getPrevious());
@@ -69,7 +69,7 @@ public class LinkedList {
         current = current.getPrevious();
     }
 
-    public void insertSorted(Polygon p){
+    public void insertSorted(PlanarShape p){
         //insert a new node into it's correctly sorted position
     }
 
