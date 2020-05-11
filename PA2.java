@@ -9,27 +9,20 @@ public class PA2 {
 
     public static void main(String args[]){
         LinkedList mp = null, mpSorted = null;
-        int numOfPoints;
+        int numOfPoint= 0;
         //Have a try/catch statement that reads from a user specified input file
         try {//A try/catch statement to import from a file
-            Scanner reader = new Scanner(new FileInputStream("input.txt"));//Scanner reader object to use for stepping through the data in the file
+
+            Scanner reader = new Scanner(new FileInputStream(args[0]));//Scanner reader object to use for stepping through the data in the file
 
             boolean b = false; //A variable to break from the while loop
-            String type = reader.next();
+
 
             int count = 0;
 
-            while (b) {
+            while (reader.hasNext()) {
+                String type = reader.next();
 
-
-                if (type.equals("P")){//If there is a p, meaning another polygon exists, continue looping
-                    b = true;
-                    numOfPoints = reader.nextInt(); //The number of points in the polygon
-                } else if (type.equals("C")){
-
-                } else if (type.equals("S")){
-
-                }
 
                 if (type.equals("C")){
                     double x,y,radius;
@@ -41,13 +34,13 @@ public class PA2 {
                     double x0,y0,x1,y1,radius;
                     x0 = reader.nextDouble();
                 } else if (type.equals("P")){
-                    Polygon p = new Polygon(numOfPoints);//creates empty Polygon with correct array size
+                    //Polygon p = new Polygon(numOfPoints);//creates empty Polygon with correct array size
                 }
 
 
-                for (int i = 0; i < numOfPoints; i++) {//Loops through and adds the necessary number of points to Polygon
-                    p.addPoint(reader.nextDouble(), reader.nextDouble());//Adds a point with the two x & y co-ordinate values from the file
-                }
+                /*for (int i = 0; i < numOfPoints; i++) {//Loops through and adds the necessary number of points to Polygon
+                    //p.addPoint(reader.nextDouble(), reader.nextDouble());//Adds a point with the two x & y co-ordinate values from the file
+                }*/
                 if (count==0) {
                     //mp = new LinkedList(p);//create a new MyPolygon for storing the Polygons
                 } else {

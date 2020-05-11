@@ -1,18 +1,18 @@
 import java.util.*;
 
-public class Node {
-    //next & previous pointers of data type PlanarShape and pointer
-    private PlanarShape data;
-    private Node next;
-    private Node previous;
+public class Node<E> {
+    //next & previous pointers of data type E and pointer
+    private E data;
+    private Node<E> next;
+    private Node<E> previous;
 
-    public Node(PlanarShape p){//Creates a node with data PlanarShape
+    public Node(E p){//Creates a node with data E
         next = this;
         previous = this;
         data = p;
     }
 
-    public Node(Node n){//Copy constructor
+    public Node(Node<E> n){//Copy constructor
         next = this;
         previous = this;
         data = n.data;
@@ -24,25 +24,25 @@ public class Node {
         previous = this;
     }
 
-    public Node(PlanarShape p, Node nxt, Node prev){//creates a node and places it in a manual position
+    public Node(E p, Node<E> nxt, Node<E> prev){//creates a node and places it in a manual position
         next = nxt;
         previous = prev;
         data = p;
     }
 
-    public void setNext(Node nxt){
+    public void setNext(Node<E> nxt){
         next = nxt;
     }
 
-    public void setPrevious(Node prev){
+    public void setPrevious(Node<E> prev){
         previous = prev;
     }
 
-    public Node getNext(){
+    public Node<E> getNext(){
         return next;
     }
 
-    public Node getPrevious(){
+    public Node<E> getPrevious(){
         return previous;
     }
 
@@ -52,7 +52,7 @@ public class Node {
         previous = null;
     }
 
-    public String getArea(){//calls PlanarShape area function and checks to see if the output is to 2 decimal places and if not then a 0 is added
+    /*public String getArea(){//calls E area function and checks to see if the output is to 2 decimal places and if not then a 0 is added
         String out = "" + data.area();
         double d= data.area();
         String text = Double.toString(Math.abs(d));
@@ -63,7 +63,7 @@ public class Node {
             return out;
         }
         return out;
-    }
+    }*/
 
     /*public boolean comesBefore(Node n){//returns true if this.area() < p.area()
         return data.comesBefore(n.data);

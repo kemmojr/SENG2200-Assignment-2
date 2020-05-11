@@ -1,13 +1,13 @@
 import java.util.*;
 import java.io.*;
 
-public class LinkedList {
-    private Node sentinel, current;
+public class LinkedList<E> {
+    private Node<E> sentinel, current;
     private int size = 0;
 
-    public LinkedList(PlanarShape first) {//Creates a MyPolygons object with one node from a polygon
-        Node n = new Node(first);
-        sentinel = new Node();
+    public LinkedList(E first) {//Creates a MyPolygons object with one node from a polygon
+        Node<E> n = new Node<E>(first);
+        sentinel = new Node<E>();
         sentinel.setNext(n);
         sentinel.setPrevious(n);
         current = n;
@@ -16,11 +16,11 @@ public class LinkedList {
     }
 
     public LinkedList() {//creates an empty LinkedList
-        sentinel = new Node();
+        sentinel = new Node<E>();
     }
 
-    public void insert(PlanarShape p) {//Insert a PlanarShape in a node before current
-        Node n = new Node(p);
+    public void insert(E p) {//Insert a a generic object in a node before current
+        Node<E> n = new Node<E>(p);
         current.getNext().setPrevious(n);
         n.setNext(current.getNext());
         n.setPrevious(current);
@@ -28,8 +28,8 @@ public class LinkedList {
         size++;
     }
 
-    public void prepend(PlanarShape p) {//Add a new node at the start of the LL
-        Node n = new Node(p);
+    public void prepend(E p) {//Add a new node at the start of the LL
+        Node<E> n = new Node<E>(p);
         n.setPrevious(sentinel);
         n.setNext(sentinel.getNext());
         sentinel.getNext().setPrevious(n);
@@ -37,8 +37,8 @@ public class LinkedList {
         size++;
     }
 
-    public void append(PlanarShape p) {//Add a new node at the end of the LL
-        Node n = new Node(p);
+    public void append(E p) {//Add a new node at the end of the LL
+        Node<E> n = new Node<E>(p);
         n.setNext(sentinel);
         n.setPrevious(sentinel.getPrevious());
         sentinel.getPrevious().setNext(n);
@@ -69,16 +69,16 @@ public class LinkedList {
         current = current.getPrevious();
     }
 
-    public void insertSorted(PlanarShape p){
+    public void insertSorted(E p){
         //insert a new node into it's correctly sorted position
     }
 
     @Override
     public String toString() {//A toString method that steps through the LinkedList and outputs in in the correct format
         String out = "";
-        Node stepper = sentinel.getNext();
+        Node<E> stepper = sentinel.getNext();
         for (int i=0;i<size;i++){
-            out += stepper.toString() + stepper.getArea() + "\n";
+            out += stepper.toString() + "\n";
             stepper = stepper.getNext();
         }
         return out;
