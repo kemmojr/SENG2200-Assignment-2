@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class LinkedList<E> {
+public class LinkedList<E> implements Iterator<E> {
     private Node<E> sentinel, current;
     private int size = 0;
 
@@ -44,6 +44,22 @@ public class LinkedList<E> {
         sentinel.getPrevious().setNext(n);
         sentinel.setPrevious(n);
         size++;
+    }
+
+    @Override
+    public boolean hasNext() {
+        boolean out;
+        if (this.next()!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public E next() {
+        E out;
+        out = this.next();
+        return out;
     }
 
     public void remove() {//remove from the start of the list
