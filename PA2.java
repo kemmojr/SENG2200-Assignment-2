@@ -9,7 +9,7 @@ public class PA2 {
 
     public static void main(String args[]){
         LinkedList mp = null, mpSorted = null;
-        int numOfPoint= 0;
+        LinkedList<PlanarShape> lL = new LinkedList<PlanarShape>();
         //Have a try/catch statement that reads from a user specified input file
         try {//A try/catch statement to import from a file
 
@@ -30,11 +30,24 @@ public class PA2 {
                     y = reader.nextDouble();
                     radius = reader.nextDouble();
                     Circle c = new Circle(x,y,radius);
+                    lL.append(c);
                 } else if (type.equals("S")){
                     double x0,y0,x1,y1,radius;
                     x0 = reader.nextDouble();
+                    y0 = reader.nextDouble();
+                    x1 = reader.nextDouble();
+                    y1 = reader.nextDouble();
+                    SemiCircle s = new SemiCircle(x0,y0,x1,y1);
+                    lL.append(s);
                 } else if (type.equals("P")){
-                    //Polygon p = new Polygon(numOfPoints);//creates empty Polygon with correct array size
+                    int numOfPoints = reader.nextInt();
+                    Polygon p = new Polygon(numOfPoints);//creates empty Polygon with correct array size
+                    for (int i = 0; i < numOfPoints; i++) {
+                        double x = reader.nextDouble();
+                        double y = reader.nextDouble();
+                        p.addPoint(x,y);
+                    }
+                    lL.append(p);
                 }
 
 

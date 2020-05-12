@@ -5,7 +5,7 @@ public class LinkedList<E> {
     private Node<E> sentinel, current;
     private int size = 0;
 
-    public LinkedList(E first) {//Creates a MyPolygons object with one node from a polygon
+    public LinkedList(E first) {//Creates a Linkedlist object with one node from a polygon
         Node<E> n = new Node<E>(first);
         sentinel = new Node<E>();
         sentinel.setNext(n);

@@ -1,5 +1,5 @@
 import java.util.*;
-public class Polygon implements ComparePoly{
+public class Polygon<E> extends PlanarShape{
 
     private Point[] points;//Array of all the points
     int numOfPoints, pointCount = 0;
@@ -9,7 +9,7 @@ public class Polygon implements ComparePoly{
         points = new Point[numOfPoints];
     }
 
-    Polygon(Polygon p){
+    Polygon(Polygon<E> p){
         numOfPoints = p.numOfPoints;
         points = new Point[numOfPoints];
         for (int i = 0;i < p.numOfPoints-1; i++){
@@ -35,7 +35,7 @@ public class Polygon implements ComparePoly{
 
     }
 
-    public double distance(){//returns the shortest distance from the origin for a polygon
+    public double originDistance(){//returns the shortest distance from the origin for a polygon
         double dist = 0;
         dist = points[0].distance();
         for (int i = 0; i < pointCount; i++) {
@@ -63,14 +63,14 @@ public class Polygon implements ComparePoly{
 
     }
 
-    public boolean comesBefore(Polygon p){
+    public boolean comesBefore(Polygon<E> p){
         double a1 = this.area();
         double a2 = p.area();
         double percentage = 0.001;
         double diff = Math.sqrt((a1-a2)*(a1-a2));
         if (a1<a2){
             if (diff/a1<percentage){
-                if (this.distance()<p.distance()){
+                if (this.originDistance()<p.originDistance()){
                     return true;
                 } else {
                     return false;
@@ -78,7 +78,7 @@ public class Polygon implements ComparePoly{
             }
         } else {
             if (diff/a2<percentage){
-                if (this.distance()<p.distance()){
+                if (this.originDistance()<p.originDistance()){
                     return true;
                 } else {
                     return false;
