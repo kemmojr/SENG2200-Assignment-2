@@ -50,34 +50,13 @@ public class PA2 {
                     lL.append(p);
                 }
 
-
-                /*for (int i = 0; i < numOfPoints; i++) {//Loops through and adds the necessary number of points to Polygon
-                    //p.addPoint(reader.nextDouble(), reader.nextDouble());//Adds a point with the two x & y co-ordinate values from the file
-                }*/
-                if (count==0) {
-                    //mp = new LinkedList(p);//create a new MyPolygon for storing the Polygons
-                } else {
-                    //mp.append(p);//Otherwise add the polygon to the LinkedList
                 }
-                count++;
-                try{
-                    if (reader.next().equals("P")){//checks if there is another Polygon and if not then break from the while loop
-                        continue;
-                    } else {
-                        b = false;
-                    }
-                } catch (Exception e){
-                    //A catch to avoid errors when reading from file
-                    break;
-                }
-
-
-            }
-
-            //mpSorted = new MyPolygons(mp);//creates empty MP for putting a sorted LinkedList in
         } catch (Exception e){
             //Exception code for if there is a problem reading from file
             System.out.println("Error");
         }
+        System.out.println("Unsorted List");
+        System.out.println(lL);
+        System.out.println("Sorted List");
     }
 }
