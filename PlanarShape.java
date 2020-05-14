@@ -6,7 +6,7 @@ abstract class PlanarShape implements Comparable<PlanarShape> {
     public abstract double originDistance();
 
     @Override
-    public int compareTo(PlanarShape o) {//implement
+    public int compareTo(PlanarShape o) {
         boolean out;
         if (this.area()<o.area()){
             return -1;

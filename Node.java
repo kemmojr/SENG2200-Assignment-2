@@ -69,6 +69,16 @@ public class Node<E> {
         return data.comesBefore(n.data);
     }*/
 
+    public int compareTo(Node<PlanarShape> n){//utilises the compareTo method in PlanarShape and reverses the answer as we have to call the method from the opposite variable than normal
+
+        int i = n.data.compareTo((PlanarShape) data);
+        if (i==1){
+            return -1;
+        }else {
+            return 1;
+        }
+    }
+
     @Override
     public String toString() {//how to convert the object to a string
         String out = "";

@@ -3,8 +3,12 @@ import java.util.*;
 import java.io.*;
 
 public class PA2 {
-    public static void insertionSort() {
+    public static void insertInOrder(LinkedList<PlanarShape> unsorted, LinkedList<PlanarShape> sorted) {
         //insertionSort all of the items of the linkedlist into a new LinkedList
+        for (int i = 0; i <= unsorted.getSize(); i++) {
+            insertInOrder(unsorted,sorted);
+        }
+
     }
 
     public static void main(String args[]){
