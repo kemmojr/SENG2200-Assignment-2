@@ -46,6 +46,16 @@ public class LinkedList<E> implements Iterator<E> {
         size++;
     }
 
+    public void prepend(Node<E> n1) {//Add a new node at the start of the LL
+        Node<E> n = new Node<E>(n1);
+        n.setPrevious(sentinel);
+        n.setNext(sentinel.getNext());
+        sentinel.getNext().setPrevious(n);
+        sentinel.setNext(n);
+        current = sentinel;
+        size++;
+    }
+
     public void append(E p) {//Add a new node at the end of the LL
         Node<E> n = new Node<E>(p);
         n.setNext(sentinel);
@@ -106,21 +116,35 @@ public class LinkedList<E> implements Iterator<E> {
     public void insertSorted(E p){
         //insert a new node into it's correctly sorted position
     }
-    public void insertSorted(LinkedList<PlanarShape> lL){
+    public void insertSorted(LinkedList<PlanarShape> sorted){
         //insert a new node into it's correctly sorted position
-        Node<PlanarShape> n = lL.current.getNext();
-        reset();
+
+        Node<PlanarShape> node = null;
+
+        if (sorted.getSize()==0){
+            current = sentinel.getNext();
+            node = (Node<PlanarShape>) current;
+            sorted.prepend(node);
+            //sorted.current = sorted.current.getNext();
+            return;
+        }
+        setCurrentNext();
+
+        Node<PlanarShape> n = sorted.sentinel.getNext();
+
         for (int i = 0; i <= size; i++) {
-            Node<PlanarShape> node = (Node<PlanarShape>) current;
+            node = (Node<PlanarShape>) current;
 
             if (n.compareTo(node)<0){
-                lL.insert(n);
+                sorted.insert(node);
+                sorted.setCurrentNext();
                 return;
             }else {
                 setCurrentNext();
             }
         }
-        lL.append(n);
+        sorted.append(node);
+        sorted.setCurrentNext();
     }
 
     @Override

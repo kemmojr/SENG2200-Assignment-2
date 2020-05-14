@@ -6,7 +6,7 @@ public class PA2 {
     public static void insertInOrder(LinkedList<PlanarShape> unsorted, LinkedList<PlanarShape> sorted) {
         //insertionSort all of the items of the linkedlist into a new LinkedList
         for (int i = 0; i <= unsorted.getSize(); i++) {
-            insertInOrder(unsorted,sorted);
+            unsorted.insertSorted(sorted);
         }
 
     }
@@ -14,6 +14,7 @@ public class PA2 {
     public static void main(String args[]){
         LinkedList mp = null, mpSorted = null;
         LinkedList<PlanarShape> lL = new LinkedList<PlanarShape>();
+        LinkedList<PlanarShape> lLSorted = new LinkedList<PlanarShape>();
         //Have a try/catch statement that reads from a user specified input file
         try {//A try/catch statement to import from a file
 
@@ -62,5 +63,12 @@ public class PA2 {
         System.out.println("Unsorted List");
         System.out.println(lL);
         System.out.println("Sorted List");
+        try {
+            insertInOrder(lL,lLSorted);
+            System.out.println(lLSorted);
+        } catch (Exception E){
+            System.out.println("Sorting failed");
+        }
+
     }
 }
