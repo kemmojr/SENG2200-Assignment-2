@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class LinkedList<E> implements Iterator<E> {
+public class LinkedList<E> implements Iterable<E> {
     private Node<E> sentinel, current;
     private int size = 0;
 
@@ -26,6 +26,10 @@ public class LinkedList<E> implements Iterator<E> {
         n.setPrevious(current);
         current.setNext(n);
         size++;
+    }
+
+    private Node<E> getSentinel(){
+        return sentinel;
     }
 
     public void insert(Node<E> n){
@@ -74,21 +78,11 @@ public class LinkedList<E> implements Iterator<E> {
         size++;
     }
 
-    @Override
-    public boolean hasNext() {
-        boolean out;
-        if (this.next()!=null){
-            return true;
-        }
-        return false;
+    // return Iterator instance
+    public Iterator<E> iterator(){
+        return new ListIterator();
     }
 
-    @Override
-    public E next() {
-        E out;
-        out = this.next();
-        return out;
-    }
 
     public void remove() {//remove from the start of the list
         sentinel.getNext().getNext().setPrevious(sentinel);
@@ -150,11 +144,42 @@ public class LinkedList<E> implements Iterator<E> {
     @Override
     public String toString() {//A toString method that steps through the LinkedList and outputs in in the correct format
         String out = "";
-        Node<E> stepper = sentinel.getNext();
-        for (int i=0;i<size;i++){
-            out += stepper.toString() + "\n";
-            stepper = stepper.getNext();
+
+        Iterator<E> it = iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
         }
         return out;
     }
+
+    private class ListIterator implements Iterator<E> {
+        Node<E> current;
+
+
+        public ListIterator(){
+            current = sentinel;
+        }
+
+
+        public boolean hasNext(){
+            if (current.getNext()!=sentinel){
+                return true;
+            }
+            return false;
+        }
+
+
+        public E next(){
+
+            current = current.getNext();
+            E data = current.getData();
+            return data;
+        }
+
+
+        public void remove(){
+            throw new UnsupportedOperationException();
+        }
+    }
 }
+

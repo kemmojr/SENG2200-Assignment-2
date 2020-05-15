@@ -46,28 +46,16 @@ public class Node<E> {
         return previous;
     }
 
+    public E getData() {
+        return data;
+    }
+
     public void delete(){//deletes a node (setting the data to null)
         data = null;
         next = null;
         previous = null;
     }
 
-    /*public String getArea(){//calls E area function and checks to see if the output is to 2 decimal places and if not then a 0 is added
-        String out = "" + data.area();
-        double d= data.area();
-        String text = Double.toString(Math.abs(d));
-        int numOfInt = text.indexOf('.');
-        int decimalPlaces = text.length() - numOfInt - 1;
-        if (decimalPlaces==1){
-            out += "0";
-            return out;
-        }
-        return out;
-    }*/
-
-    /*public boolean comesBefore(Node n){//returns true if this.area() < p.area()
-        return data.comesBefore(n.data);
-    }*/
 
     public int compareTo(Node<PlanarShape> n){//utilises the compareTo method in PlanarShape and reverses the answer as we have to call the method from the opposite variable than normal
 

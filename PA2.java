@@ -60,9 +60,20 @@ public class PA2 {
             //Exception code for if there is a problem reading from file
             System.out.println("Error");
         }
+        System.out.println("iterator stuff:");
+        Iterator<PlanarShape> it = lL.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
+
+
+
         System.out.println("Unsorted List");
         System.out.println(lL);
         System.out.println("Sorted List");
+
+
+
         try {
             //insertInOrder(lL,lLSorted);
             //System.out.println(lLSorted);
