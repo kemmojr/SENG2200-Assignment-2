@@ -34,10 +34,11 @@ public class LinkedList<E> implements Iterable<E> {
 
     public void insert(Node<PlanarShape> before,Node<E> inserting){
         Node<E> newN = new Node<E>(inserting);
-        before.getNext().setPrevious((Node<PlanarShape>) newN);
-        newN.setNext((Node<E>) before.getNext());
-        newN.setPrevious((Node<E>) before);
-        before.setNext((Node<PlanarShape>) newN);
+        //before.getNext().setPrevious((Node<PlanarShape>) newN);
+        newN.setNext((Node<E>) before);
+        newN.setPrevious((Node<E>) before.getPrevious());
+        before.getPrevious().setNext((Node<PlanarShape>) newN);
+        before.setPrevious((Node<PlanarShape>) newN);
         size++;
     }
 
