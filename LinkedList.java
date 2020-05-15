@@ -32,12 +32,12 @@ public class LinkedList<E> implements Iterable<E> {
         return sentinel;
     }
 
-    public void insert(Node<E> n){
-        Node<E> newN = new Node<E>(n);
-        current.getNext().setPrevious(newN);
-        n.setNext(current.getNext());
-        n.setPrevious(current);
-        current.setNext(newN);
+    public void insert(Node<PlanarShape> before,Node<E> inserting){
+        Node<E> newN = new Node<E>(inserting);
+        before.getNext().setPrevious((Node<PlanarShape>) newN);
+        newN.setNext((Node<E>) before.getNext());
+        newN.setPrevious((Node<E>) before);
+        before.setNext((Node<PlanarShape>) newN);
         size++;
     }
 
@@ -69,14 +69,14 @@ public class LinkedList<E> implements Iterable<E> {
         size++;
     }
 
-    public void append(Node<E> n1) {//Add a new node at the end of the LL
-        Node<E> n = new Node<E>(n1);
+    /*public void append(Iterator<E> it) {//Add a new node at the end of the LL
+        Node<E> n = new Node<E>(it);
         n.setNext(sentinel);
         n.setPrevious(sentinel.getPrevious());
         sentinel.getPrevious().setNext(n);
         sentinel.setPrevious(n);
         size++;
-    }
+    }*/
 
     // return Iterator instance
     public Iterator<E> iterator(){
@@ -110,35 +110,33 @@ public class LinkedList<E> implements Iterable<E> {
     public void insertSorted(E p){
         //insert a new node into it's correctly sorted position
     }
-    public void insertSorted(LinkedList<PlanarShape> sorted){
+
+    public int compareTo(PlanarShape p1,PlanarShape p2){
+        return p1.compareTo(p2);
+    }
+    public void insertSorted(LinkedList<PlanarShape> sorted, int rep){
         //insert a new node into it's correctly sorted position
 
-        Node<PlanarShape> node = null;
-
-        if (sorted.getSize()==0){
-            current = sentinel.getNext();
-            node = (Node<PlanarShape>) current;
-            sorted.prepend(node);
-            //sorted.current = sorted.current.getNext();
+        Node<E> in = sentinel.getNext();
+        for (int i = 0; i < rep; i++) {//creates an iterator to step through the LinkedList and sets it to be the next node we are inserting
+            in = in.getNext();
+        }
+        Node<PlanarShape> comp = sorted.sentinel.getNext();
+        if (rep==0){
+            sorted.append((PlanarShape) in.getData());
             return;
         }
-        setCurrentNext();
-
-        Node<PlanarShape> n = sorted.sentinel.getNext();
-
-        for (int i = 0; i < size; i++) {
-            node = (Node<PlanarShape>) current;
-
-            if (n.compareTo(node)<0){
-                sorted.insert(node);
-                sorted.setCurrentNext();
+        for (int i = 0; i < sorted.getSize(); i++) {
+            if (compareTo((PlanarShape) in.getData(),comp.getData())<0){
+                sorted.insert(comp, (Node<PlanarShape>) in);
                 return;
-            }else {
-                setCurrentNext();
+            } else if (i==sorted.getSize()-1){
+                sorted.append((PlanarShape) in.getData());
+                return;
             }
+            comp = comp.getNext();
         }
-        sorted.append(node);
-        sorted.setCurrentNext();
+
     }
 
     @Override
@@ -153,13 +151,12 @@ public class LinkedList<E> implements Iterable<E> {
     }
 
     private class ListIterator implements Iterator<E> {
-        Node<E> current;
+        public Node<E> current;
 
 
         public ListIterator(){
             current = sentinel;
         }
-
 
         public boolean hasNext(){
             if (current.getNext()!=sentinel){
@@ -175,7 +172,6 @@ public class LinkedList<E> implements Iterable<E> {
             E data = current.getData();
             return data;
         }
-
 
         public void remove(){
             throw new UnsupportedOperationException();

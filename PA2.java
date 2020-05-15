@@ -5,8 +5,8 @@ import java.io.*;
 public class PA2 {
     public static void insertInOrder(LinkedList<PlanarShape> unsorted, LinkedList<PlanarShape> sorted) {
         //insertionSort all of the items of the linkedlist into a new LinkedList
-        for (int i = 0; i <= unsorted.getSize(); i++) {
-            unsorted.insertSorted(sorted);
+        for (int i = 0; i < unsorted.getSize(); i++) {
+            unsorted.insertSorted(sorted, i);
         }
 
     }
@@ -60,11 +60,6 @@ public class PA2 {
             //Exception code for if there is a problem reading from file
             System.out.println("Error");
         }
-        System.out.println("iterator stuff:");
-        Iterator<PlanarShape> it = lL.iterator();
-        while (it.hasNext()){
-            System.out.println(it.next());
-        }
 
 
 
@@ -75,8 +70,8 @@ public class PA2 {
 
 
         try {
-            //insertInOrder(lL,lLSorted);
-            //System.out.println(lLSorted);
+            insertInOrder(lL,lLSorted);
+            System.out.println(lLSorted);
         } catch (Exception E){
             System.out.println("Sorting failed");
         }

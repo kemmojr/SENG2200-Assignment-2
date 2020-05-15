@@ -67,10 +67,11 @@ public class Node<E> {
         }
     }
 
+
     @Override
     public String toString() {//how to convert the object to a string
         String out = "";
-        out += data.toString();
+        out += data;
         return out;
     }
 
