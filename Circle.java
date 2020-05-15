@@ -25,7 +25,9 @@ public class Circle extends PlanarShape {
 
     @Override
     public String toString() {
-        return "CIRC=[" + points[0]+radius+"]: "+area();
+        String out ="CIRC=[" + points[0]+radius;
+        out += String.format("]: %6.2f", area());
+        return out;
     }
 }
 
