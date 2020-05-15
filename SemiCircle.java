@@ -2,18 +2,18 @@ import java.lang.Math;
 
 public class SemiCircle extends PlanarShape{
 
-    double x0, y0, x1, y1, x2, y2, x3, y3, radius;
+    private double radius;
+    Point points[];
 
     public SemiCircle(double x0In, double y0In, double x1In, double y1In){
-        x1 = x1In;
-        y1 = y1In;
-        x0 = x0In;
-        y0 = y0In;
-        x2 = x0 - Math.abs(y0-y1);
-        y2 = y0 + Math.abs(x0-x1);
-        x3 = x0 + Math.abs(y0-y1);
-        y3 = y0 - Math.abs(x0-x1);
-        radius = Math.sqrt((y1-y0)*(y1-y0)+(x1-x0)*(x1-x0));
+        points = new Point[4];
+        points[0] = new Point(x0In,y0In);
+        points[1] = new Point(x1In,y1In);
+        points[2] = new Point(points[0].getX() - Math.abs(points[0].getY()-points[1].getY()),points[0].getY() + Math.abs(points[0].getX()-points[1].getX()));
+        points[3] = new Point(points[0].getX() + Math.abs(points[0].getY()-points[1].getY()),points[0].getY() - Math.abs(points[0].getX()-points[1].getX()));
+
+        //radius = Math.sqrt((y1-y0)*(y1-y0)+(x1-x0)*(x1-x0));
+        radius = Math.sqrt((points[1].getY()-points[0].getY())*(points[1].getY()-points[0].getY())+(points[1].getX()-points[0].getX())*(points[1].getX()-points[0].getX()));
     }
 
     public double area() {
@@ -25,14 +25,7 @@ public class SemiCircle extends PlanarShape{
     public double originDistance() {
         double originDist=0, finalOriginDist=0;
         for (int i = 0; i < 4; i++) {
-            switch (i){
-                case 0: originDist = Math.sqrt(x0*x0+y0*y0);
-                finalOriginDist = originDist;
-                case 1: originDist = Math.sqrt(x1*x1+y1*y1);
-                case 2: originDist = Math.sqrt(x2*x2+y2*y2);
-                case 3: originDist = Math.sqrt(x3*x3+y3*y3);
-
-            }
+            originDist = points[i].distance();
             if (originDist<finalOriginDist)
                 finalOriginDist = originDist;
         }
@@ -41,6 +34,11 @@ public class SemiCircle extends PlanarShape{
 
     @Override
     public String toString() {
-        return "SEMI=[("+x0+", "+y0+")"+"("+x1+", "+y1+")]: "+area();
+        String out = "SEMI=[";
+        for (int i = 0; i < 4; i++) {
+            out += points[i].toString();
+        }
+        out += String.format("]: %6.2f", area());
+        return out;
     }
 }

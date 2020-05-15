@@ -132,7 +132,7 @@ public class LinkedList<E> implements Iterator<E> {
 
         Node<PlanarShape> n = sorted.sentinel.getNext();
 
-        for (int i = 0; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             node = (Node<PlanarShape>) current;
 
             if (n.compareTo(node)<0){

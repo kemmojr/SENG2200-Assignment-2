@@ -64,8 +64,8 @@ public class PA2 {
         System.out.println(lL);
         System.out.println("Sorted List");
         try {
-            insertInOrder(lL,lLSorted);
-            System.out.println(lLSorted);
+            //insertInOrder(lL,lLSorted);
+            //System.out.println(lLSorted);
         } catch (Exception E){
             System.out.println("Sorting failed");
         }

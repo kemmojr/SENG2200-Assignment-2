@@ -1,11 +1,12 @@
 import java.lang.Math;
 
 public class Circle extends PlanarShape {
-    private double x, y, radius;
+    private double radius;
+    private Point[] points;
 
     public Circle(double xIn, double yIn, double radiusIn){
-        x = xIn;
-        y = yIn;
+        points = new Point[1];
+        points[0] = new Point(xIn,yIn);
         radius = radiusIn;
     }
 
@@ -16,7 +17,7 @@ public class Circle extends PlanarShape {
 
     public double originDistance(){
         double originDist;
-        originDist = Math.sqrt(x*x+y*y);
+        originDist = points[0].distance();
         originDist -= radius;
         return originDist;
     }
@@ -24,7 +25,7 @@ public class Circle extends PlanarShape {
 
     @Override
     public String toString() {
-        return "CIRC=[" + "("+x+", "+y+") "+radius+"]: "+area();
+        return "CIRC=[" + points[0]+radius+"]: "+area();
     }
 }
 

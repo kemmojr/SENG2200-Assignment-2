@@ -95,13 +95,9 @@ public class Polygon<E> extends PlanarShape{
     public String toString() {//toString method that formats correctly
         String out = "POLY=[";
         for (int i =0;i<pointCount;i++){
-            if (i==pointCount-1){
-                out += points[i].toString();
-            } else {
-                out += points[i].toString() + ", ";
-            }
+            out += points[i].toString();
         }
-        out += "] : "+area();
+        out += String.format("]: %6.2f", area());
         return out;
     }
 
