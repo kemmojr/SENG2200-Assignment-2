@@ -46,7 +46,7 @@ public class Node<E> {
         return previous;
     }
 
-    public E getData() {
+    public E getData() {//returns the node data
         return data;
     }
 
@@ -57,9 +57,9 @@ public class Node<E> {
     }
 
 
-    public int compareTo(Node<PlanarShape> n){//utilises the compareTo method in PlanarShape and reverses the answer as we have to call the method from the opposite variable than normal
+    public int compareTo(Node<E> n){//utilises the compareTo method in PlanarShape and reverses the answer as we have to call the method from the opposite variable than normal
 
-        int i = n.data.compareTo((PlanarShape) data);
+        int i = n.data.compareTo(data);
         if (i==1){
             return -1;
         }else {

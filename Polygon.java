@@ -6,10 +6,10 @@ public class Polygon<E> extends PlanarShape{
 
     Polygon(int numOfP){
         numOfPoints = numOfP+1;
-        points = new Point[numOfPoints];
+        points = new Point[numOfPoints];//Array of points
     }
 
-    Polygon(Polygon<E> p){
+    Polygon(Polygon<E> p){//constructor 
         numOfPoints = p.numOfPoints;
         points = new Point[numOfPoints];
         for (int i = 0;i < p.numOfPoints-1; i++){
@@ -63,36 +63,8 @@ public class Polygon<E> extends PlanarShape{
 
     }
 
-    public boolean comesBefore(Polygon<E> p){
-        double a1 = this.area();
-        double a2 = p.area();
-        double percentage = 0.001;
-        double diff = Math.sqrt((a1-a2)*(a1-a2));
-        if (a1<a2){
-            if (diff/a1<percentage){
-                if (this.originDistance()<p.originDistance()){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        } else {
-            if (diff/a2<percentage){
-                if (this.originDistance()<p.originDistance()){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        if (this.area()<p.area()){
-            return true;
-        } else {
-            return false;
-        }
-    }
     @Override
-    public String toString() {//toString method that formats correctly
+    public String toString() {//A toString method that formats according to the 6.2f spec
         String out = "POLY=[";
         for (int i =0;i<pointCount;i++){
             out += points[i].toString();

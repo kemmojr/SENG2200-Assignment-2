@@ -13,7 +13,7 @@ public class Point {
         y = p.getY();
     }
 
-    public double distance(){
+    public double distance(){//returns the origin distance
         double distance = Math.sqrt(x*x+y*y);
         return distance;
     }
@@ -25,7 +25,7 @@ public class Point {
         return y;
     }
     @Override
-    public String toString(){
+    public String toString(){//toString method that formats to the 4.2f spec
     String out = String.format("(%4.2f , %4.2f)", x, y);
     return out;
     }

@@ -1,12 +1,12 @@
 
 abstract class PlanarShape implements Comparable<PlanarShape> {
 
-    public abstract double area();
+    public abstract double area();//area method
 
-    public abstract double originDistance();
+    public abstract double originDistance();//origin distance method
 
     @Override
-    public int compareTo(PlanarShape o) {
+    public int compareTo(PlanarShape o) {//A compareTo method that compares two planarShapes
         boolean out;
         if (this.area()<o.area()){
             return -1;
@@ -23,5 +23,5 @@ abstract class PlanarShape implements Comparable<PlanarShape> {
     }
 
     @Override
-    public abstract String toString();
+    public abstract String toString();//toString method
 }

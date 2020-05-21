@@ -5,8 +5,9 @@ import java.io.*;
 public class PA2 {
     public static void insertInOrder(LinkedList<PlanarShape> unsorted, LinkedList<PlanarShape> sorted) {
         //insertionSort all of the items of the linkedlist into a new LinkedList
-        for (int i = 0; i < unsorted.getSize(); i++) {
-            unsorted.insertSorted(sorted, i);
+        Iterator<PlanarShape> it = unsorted.Iterator();
+        while(it.hasNext()){//Loop through all the elements of the unsorted list and add them in order to the sorted list
+            sorted.insertSorted(it.next());
         }
 
     }
@@ -20,16 +21,11 @@ public class PA2 {
 
             Scanner reader = new Scanner(new FileInputStream(args[0]));//Scanner reader object to use for stepping through the data in the file
 
-            boolean b = false; //A variable to break from the while loop
-
-
-            int count = 0;
-
             while (reader.hasNext()) {
                 String type = reader.next();
 
 
-                if (type.equals("C")){
+                if (type.equals("C")){//Checks the type against all of the different possible planar shapes
                     double x,y,radius;
                     x = reader.nextDouble();
                     y = reader.nextDouble();
@@ -46,7 +42,7 @@ public class PA2 {
                     lL.append(s);
                 } else if (type.equals("P")){
                     int numOfPoints = reader.nextInt();
-                    Polygon p = new Polygon(numOfPoints);//creates empty Polygon with correct array size
+                    Polygon p = new Polygon(numOfPoints);//creates Polygon 
                     for (int i = 0; i < numOfPoints; i++) {
                         double x = reader.nextDouble();
                         double y = reader.nextDouble();
